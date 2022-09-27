@@ -6,10 +6,10 @@ import EditEmployee from './pages/editEmployee.vue';
 
 // make routes variable
 const routes = [
-    { path: '/employees',name:'Home',component: Home },
-    // { path: '/',name:'Home',component: Home },
+    { path: '/employees',name:'Employee',component: Home },
     { path: '/add-employee',name:'AddEmployee',component: AddEmployee },
-    { path: '/employee/edit/:id',name:'EditEmployee',component: EditEmployee, props:true },
+    { path: '/employee/:id',name:'EditEmployee',component: EditEmployee, props:true },
+    { path: '/',name:'Home',component: Home },
 
 ];
 

@@ -4,7 +4,14 @@
         <div class="row">
             <div class="col-md-12">
                 <div>
-                   <router-link to="/employees" class="btn btn-primary">Employees</router-link>
+                   <router-link to="/" class="btn btn-primary">Home</router-link>
+                   <span class="m-auto">
+                        <router-link
+                            :to="{ name: 'AddEmployee' }"
+                            class="btn btn-primary m-2"
+                            >Add Employee</router-link
+                        >
+                    </span>
                 </div>
                 <router-view></router-view>
             </div>
@@ -19,6 +26,7 @@
 
 
 <script>
+
 export default {
     data() {
         return {

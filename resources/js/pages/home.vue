@@ -5,13 +5,6 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title m-auto">List of Users</h3>
-                    <span class="m-auto">
-                        <router-link
-                            :to="{ name: 'AddEmployee' }"
-                            class="btn btn-primary"
-                            >Add Employee</router-link
-                        >
-                    </span>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -28,7 +21,10 @@
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.team }}</td>
                                 <router-link
-                                    :to="{name: 'EditEmployee', params: {id: user.id}}"
+                                    :to="{
+                                        name: 'EditEmployee',
+                                        params: { id: user.id },
+                                    }"
                                     class="btn"
                                     >Edit</router-link
                                 >
@@ -50,7 +46,7 @@ export default {
     data() {
         return {
             users: [],
-            clicked:true,
+            clicked: true,
         };
     },
     mounted() {
@@ -63,7 +59,10 @@ export default {
         deleteEmployee: function (id) {
             axios.delete("/api/employee/" + id).then((response) => {
                 console.log("successfully deleted");
-                this.$router.push('/');
+                axios.get("/api/employees").then((response) => {
+                    this.users = response.data;
+                });
+                this.$router.push("/");
             });
         },
         // edit function for editing employee
