@@ -14,24 +14,30 @@ class EmployeeController extends Controller
     }
     public function store(Request $request)
     {
-        $newItem = new Employee;
-        $newItem->name = $request->item['name'];
-        $newItem->save();
+        $newEmployee = new Employee;
+        $newEmployee->name = $request->employee['name'];
+        $newEmployee->email = $request->employee['email'];
+        $newEmployee->phone = $request->employee['phone'];
+        $newEmployee->team = $request->employee['team'];
+        $newEmployee->save();
  
-        return $newItem;
+        return $newEmployee;
     }
     public function update(Request $request, $id)
     {
-        $existingItem = Employee::find($id);  
+        $existingEmployee = Employee::find($id);  
  
-        if($existingItem){
-           $existingItem->completed = $request->item['completed'] ? true : false;
-           $existingItem->updated_at = Carbon::now() ;
-           $existingItem->save();
-           return $existingItem;
+        if($existingEmployee){
+           $existingEmployee->name = $request->employee['name'];
+           $existingEmployee->email = $request->employee['email'];
+           $existingEmployee->phone = $request->employee['phone'];
+           $existingEmployee->team = $request->employee['team'];
+           $existingEmployee->updated_at = Carbon::now() ;
+           $existingEmployee->save();
+           return $existingEmployee;
  
         } 
-        return "Item not found";
+        return "Employee not found";
     }
     public function destroy($id)
     {
