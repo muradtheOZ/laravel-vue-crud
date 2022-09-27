@@ -48,4 +48,9 @@ class EmployeeController extends Controller
         }
         return "Employee not found";
     }
+    //show single employee
+    public function show($id)
+    {
+        return Employee::find($id);
+    }
 }

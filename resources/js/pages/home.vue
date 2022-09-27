@@ -1,11 +1,14 @@
 <template>
     <div class="container">
+        <router-view></router-view>
         <div class="row">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title m-auto">List of Users</h3>
                     <span class="m-auto">
-                        <router-link :to="{name:'AddEmployee'}"  class="btn btn-primary"
+                        <router-link
+                            :to="{ name: 'AddEmployee' }"
+                            class="btn btn-primary"
                             >Add Employee</router-link
                         >
                     </span>
@@ -24,7 +27,11 @@
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.team }}</td>
-                                <button>Edit</button>
+                                <router-link
+                                    :to="{name: 'EditEmployee', params: {id: user.id}}"
+                                    class="btn"
+                                    >Edit</router-link
+                                >
                                 <!-- delete button for deleting employee -->
                                 <button @click="deleteEmployee(user.id)">
                                     Delete
@@ -39,26 +46,26 @@
 </template>
 <!-- functionalities for above code -->
 <script>
-    export default {
-        data() {
-            return {
-                users: []
-            }
+export default {
+    data() {
+        return {
+            users: [],
+            clicked:true,
+        };
+    },
+    mounted() {
+        axios.get("/api/employees").then((response) => {
+            this.users = response.data;
+        });
+    },
+    // delete function for deleting employee
+    methods: {
+        deleteEmployee: function (id) {
+            axios.delete("/api/employee/" + id).then((response) => {
+                console.log("successfully deleted");
+            });
         },
-        mounted() {
-            axios.get('/api/employees')
-                .then(response => {
-                    this.users = response.data
-                })
-        },
-        // delete function for deleting employee
-        methods: {
-            deleteEmployee: function (id) {
-                axios.delete('/api/employee/' + id)
-                    .then(response => {
-                        console.log('successfully deleted');
-                    });
-            }
-        }
-    }
+        // edit function for editing employee
+    },
+};
 </script>
