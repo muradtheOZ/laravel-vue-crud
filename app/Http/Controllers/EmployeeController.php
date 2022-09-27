@@ -12,7 +12,7 @@ class EmployeeController extends Controller
     {
        return Employee::orderBy('created_at', 'desc')->get();
     }
-    public function store(Request $request)
+    public function saveEmployee(Request $request)
     {
         $newEmployee = new Employee;
         $newEmployee->name = $request->employee['name'];
@@ -23,7 +23,7 @@ class EmployeeController extends Controller
  
         return $newEmployee;
     }
-    public function update(Request $request, $id)
+    public function updateEmployee(Request $request, $id)
     {
         $existingEmployee = Employee::find($id);  
  
@@ -39,13 +39,13 @@ class EmployeeController extends Controller
         } 
         return "Employee not found";
     }
-    public function destroy($id)
+    public function deleteEmployee($id)
     {
-        $existingItem = Employee::find($id);
-        if($existingItem){
-           $existingItem->delete();
-           return "Item deleted";
+        $existingEmployee = Employee::find($id);
+        if($existingEmployee){
+           $existingEmployee->delete();
+           return "Employee deleted";
         }
-        return "Item not found";
+        return "Employee not found";
     }
 }

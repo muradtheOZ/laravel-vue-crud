@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/employees',[EmployeeController::class, 'index']);
 Route::prefix('/employee')->group(function(){
-    Route::post('/store',[EmployeeController::class, 'store']);
-    Route::put('/{id}' , [EmployeeController::class, 'update']);
-    Route::delete('/{id}', [EmployeeController::class, 'destroy'] );
+    Route::post('/store',[EmployeeController::class, 'saveEmployee']);
+    Route::put('/{id}' , [EmployeeController::class, 'updateEmployee']);
+    Route::delete('/{id}', [EmployeeController::class, 'deleteEmployee'] );
 });
