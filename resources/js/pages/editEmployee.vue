@@ -84,11 +84,13 @@ export default {
     // update employee data
     methods: {
         updateEmployee: function () {
-            axios.put('/api/employee/' + this.$route.params.id, {
-                name: this.name,
-                email: this.email,
-                phone: this.phone,
-                team: this.team
+            axios.put('/api/employee/edit/' + this.$route.params.id, {
+                employee: {
+                        name: this.name,
+                        email: this.email,
+                        phone: this.phone,
+                        team: this.team,
+                    },
             })
                 .then(response => {
                     this.$router.push('/employees');

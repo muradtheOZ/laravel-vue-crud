@@ -63,6 +63,7 @@ export default {
         deleteEmployee: function (id) {
             axios.delete("/api/employee/" + id).then((response) => {
                 console.log("successfully deleted");
+                this.$router.push('/');
             });
         },
         // edit function for editing employee

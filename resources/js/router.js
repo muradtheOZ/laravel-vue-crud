@@ -9,8 +9,7 @@ const routes = [
     { path: '/employees',name:'Home',component: Home },
     // { path: '/',name:'Home',component: Home },
     { path: '/add-employee',name:'AddEmployee',component: AddEmployee },
-    { path: '/employee/:id',name:'EditEmployee',component: EditEmployee, props:true },
-    { path: '/editEmployee/:id',name:'EditEmployee',component: EditEmployee, props:true },
+    { path: '/employee/edit/:id',name:'EditEmployee',component: EditEmployee, props:true },
 
 ];
 
